@@ -14,16 +14,6 @@ cache:
 
 script: "./gradlew clean build"
 
-notifications:
-  email:
-    recipients:
-      - skdus531@daum.net
-
-before_deploy:
-  - zip -r springboot-project *
-  - mkdir -p deploy
-  - mv springboot-project.zip deploy/springboot-project.zip
-
 deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
@@ -32,8 +22,12 @@ deploy:
     region: ap-northeast-2
     skip_cleanup: true
     acl: public_read
-    local_dir: deploy
     wait-until-deployed: true
     on:
       repo: skdus531/springboot-project #Github 주소
       branch: main
+
+notifications:
+  email:
+    recipients:
+      - skdus531@daum.net
