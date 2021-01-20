@@ -19,15 +19,21 @@ notifications:
     recipients:
       - skdus531@daum.net
 
+before_deploy:
+  - zip -r springboot-project *
+  - mkdir -p deploy
+  - mv springboot-project.zip deploy/springboot-project.zip
+
 deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
     secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
-    bucket: springboot-webservice-deploy # 6-3-3에서 생성한 S3 버킷
+    bucket: springboot-project-deploy # 6-3-3에서 생성한 S3 버킷
     region: ap-northeast-2
     skip_cleanup: true
     acl: public_read
+    local_dir:
     wait-until-deployed: true
     on:
-      repo: jojoldu/springboot-webservice #Github 주소
-      branch: master
+      repo: skdus531/springboot-project #Github 주소
+      branch: main
