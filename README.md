@@ -1,5 +1,4 @@
-# SpringBoot로 웹서비스 개발하기 [![Build Status](https://travis-ci.org/skdus531/springboot-project.svg?branch=main)](https://travis-ci.org/skdus531/springboot-project)
-
+# SpringBoot로 웹서비스 개발하기 [![Build Status](https://travis-ci.com/skdus531/springboot-project.svg?branch=main)](https://travis-ci.com/skdus531/springboot-project)
 많은 웹 서비스 구축하기 강좌들이 Python, NodeJS, Ruby, PHP만 다루고 있습니다.  
 반면 국내에서 가장 많이 사용하는 언어인 **Java로 웹서비스 구축강좌는 본적이 없습니다**.  
 Java는 대부분 로컬에서 CRUD & localhost:8080으로 게시판 구축하기가 전부였습니다.  
