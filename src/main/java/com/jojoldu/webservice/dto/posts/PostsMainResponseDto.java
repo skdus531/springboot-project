@@ -19,11 +19,13 @@ public class PostsMainResponseDto {
     private String title;
     private String author;
     private String modifiedDate;
+    private String content;
 
     public PostsMainResponseDto(Posts entity) {
         id = entity.getId();
         title = entity.getTitle();
         author = entity.getAuthor();
+        content = entity.getContent();
         modifiedDate = toStringDateTime(entity.getModifiedDate());
     }
 
