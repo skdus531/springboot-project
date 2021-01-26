@@ -32,6 +32,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile 'pl.allegro.tech.boot:handlebars-spring-boot-starter:0.2.15'
 	compile("org.mariadb.jdbc:mariadb-java-client")
+	compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.2.6.RELEASE'
 	runtime('com.h2database:h2')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
