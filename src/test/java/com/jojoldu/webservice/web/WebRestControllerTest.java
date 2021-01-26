@@ -27,9 +27,7 @@ public class WebRestControllerTest {
     public void Profile확인 () {
         //when
         String profile = this.restTemplate.getForObject("/profile", String.class);
-        String korea = this.restTemplate.getForObject("/korea",String.class);
         //then
         assertThat(profile).isEqualTo("local");
-        assertThat(korea).isEqualTo("korea");
     }
 }
