@@ -1,8 +1,8 @@
 package com.jojoldu.webservice.web;
 
-import com.jojoldu.webservice.domain.covid.KoreaStats;
-import com.jojoldu.webservice.service.CoronaVirusDataService;
+import com.jojoldu.webservice.domain.stock.Stocks;
 import com.jojoldu.webservice.service.PostsService;
+import com.jojoldu.webservice.service.StockService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,15 +29,14 @@ public class WebController {
         System.out.println("fuck");
         return "main";
     }
-    private final CoronaVirusDataService coronaVirusDataService;
 
-    @GetMapping("/korea")
-    public String korea(Model model) throws IOException {
+    @GetMapping("/stock")
+    public String stock(Model model) throws IOException {
 
-        List<KoreaStats> koreaStatsList = coronaVirusDataService.getKoreaCovidDatas();
-        model.addAttribute("koreaStats", koreaStatsList);
+        List<Stocks> stocksList = StockService.getStockData();
+        model.addAttribute("stocks", stocksList);
 
-        return "korea";
+        return "stock";
     }
 
 }

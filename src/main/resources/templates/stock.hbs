@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Present Stock Price</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class = "container">
+
+    <h1 class="display-4">Present Stock Price({{stocks.0.name}})</h1>
+    <p class="lead">시세 현황 테이블</p>
+
+    <div class="jumbotron">
+        <h1 class="display-4">{{stocks.0.presentPrice}}</h1>
+        <p class="lead">{{stocks.0.name}}의 현재가</p>
+        <hr class="my-4">
+        <h2>
+            <span>전일 대비 증감량</span>
+            <span>{{stocks.0.diffFromPrevDay}}</span>
+        </h2>
+    </div>
+    <img src="{{stocks.0.imgURL}}" alt="chart" width="100%" style="margin:20px 0 20px 0">
+    <table class= "table" style="margin-bottom: 50px">
+        <tr>
+            <th>이름</th>
+            <th>전일 대비 증감량</th>
+            <th>시가</th>
+            <th>고가</th>
+            <th title = "인구 10만 명당">저가</th>
+        </tr>
+        {{#each stocks}}
+            <tr>
+                <td>{{name}} </td>
+                <td>{{diffFromPrevDay}}</td>
+                <td>{{marketPrice}}</td>
+                <td>{{high}}</td>
+                <td>{{low}}</td>
+            </tr>
+        {{/each}}
+    </table>
+</div>
+
+</body>
+</html>
