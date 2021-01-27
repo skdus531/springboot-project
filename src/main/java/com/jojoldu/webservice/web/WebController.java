@@ -24,16 +24,17 @@ public class WebController {
     private PostsService postsService;
 
     @GetMapping("/")
-    public String main(Model model) {
-        model.addAttribute("posts", postsService.findAllDesc());
-        System.out.println("fuck");
+    public String main(Model model) throws IOException {
+
+        List<Stocks> stocksList = StockService.getStockData();
+        model.addAttribute("stocks", stocksList);
         return "main";
     }
 
     @GetMapping("/stock")
     public String stock(Model model) throws IOException {
 
-        List<Stocks> stocksList = StockService.getStockData();
+        List<Stocks> stocksList = StockService.getStockData("003550");
         model.addAttribute("stocks", stocksList);
 
         return "stock";

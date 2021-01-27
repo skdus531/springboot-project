@@ -9,31 +9,29 @@
     <link rel="stylesheet" href="/css/lib/bootstrap.min.css">
 </head>
 <body>
-    <h1>주가 예측 웹 서비스 Content Add Ver</h1>
+    <h1>주가 예측 웹 서비스</h1>
     <div class="col-md-12">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#savePostsModal">글 등록</button>
-        <br/>
         <br/>
 
         <!-- 목록 출력 영역 -->
         <table class="table table-horizontal table-bordered">
             <thead class="thead-strong">
                 <tr>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>투자자</th>
-                    <th>내용</th>
-                    <th>최종주가</th>
+
+                    <th>회사</th>
+                    <th>현재가</th>
+                    <th>실시간정보</th>
+                    <th>예측정보</th>
                 </tr>
             </thead>
             <tbody id="tbody">
-            {{#each posts}}
+            {{#each stocks}}
                 <tr>
-                    <td>{{id}}</td>
-                    <td>{{title}}</td>
-                    <td>{{author}}</td>
-                    <td>{{content}}</td>
-                    <td>{{modifiedDate}}</td>
+
+                    <td>{{name}}</td>
+                    <td>{{presentPrice}}</td>
+                    <td> <button type="button" class="btn btn-primary">실시간 정보 보기</button></td>
+                    <td> <button type="button" class="btn btn-primary">예측 정보 보기</button></td>
                 </tr>
             {{/each}}
             </tbody>
