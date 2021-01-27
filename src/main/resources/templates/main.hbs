@@ -30,7 +30,9 @@
 
                     <td>{{name}}</td>
                     <td>{{presentPrice}}</td>
-                    <td> <button type="button" class="btn btn-primary">실시간 정보 보기</button></td>
+                    <td>
+                        <button type="button" class="btn btn-primary" onClick="location.href='stock?index={{code}}'">실시간 정보 보기</button>
+                    </td>
                     <td> <button type="button" class="btn btn-primary">예측 정보 보기</button></td>
                 </tr>
             {{/each}}

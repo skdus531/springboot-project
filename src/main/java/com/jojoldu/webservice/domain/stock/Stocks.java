@@ -22,4 +22,6 @@ public class Stocks {
     private int low; // 저가
 
     private String imgURL;  // 차트
+
+    private String code; // 회사 코드
 }

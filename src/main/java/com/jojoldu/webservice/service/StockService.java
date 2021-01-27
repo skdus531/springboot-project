@@ -37,6 +37,7 @@ public class StockService {
                 .high(Integer.parseInt(tdContents.get(9).text().replaceAll("[^0-9]", "")))
                 .low(Integer.parseInt(tdContents.get(11).text().replaceAll("[^0-9]", "")))
                 .imgURL(img.attr("src"))
+                .code(code)
                 .build();
 
         return stocks;

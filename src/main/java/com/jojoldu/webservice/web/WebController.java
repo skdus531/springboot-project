@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,9 +33,9 @@ public class WebController {
     }
 
     @GetMapping("/stock")
-    public String stock(Model model) throws IOException {
+    public String stock(@RequestParam("index") String code, Model model) throws IOException {
 
-        List<Stocks> stocksList = StockService.getStockData("003550");
+        List<Stocks> stocksList =StockService.getStockData(code);
         model.addAttribute("stocks", stocksList);
 
         return "stock";
