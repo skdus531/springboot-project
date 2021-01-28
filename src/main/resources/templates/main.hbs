@@ -7,15 +7,19 @@
 
     <!--부트스트랩 css 추가-->
     <link rel="stylesheet" href="/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <h1>주가 예측 웹 서비스</h1>
-    <div class="col-md-12">
-        <br/>
+    <div class="container">
+        <div class="jumbotron" style="margin: 20px">
+            <h1 class="display-4" style="font-weight: bold">주가 예측 웹 서비스</h1>
+            <p class="lead" style="font-weight: bold">LG CNS 2그룹</p>
+        </div>
 
-        <!-- 목록 출력 영역 -->
-        <table class="table table-horizontal table-bordered">
-            <thead class="thead-strong">
+        <div class="col-md-12">
+            <br/>
+            <table class="table ">
+                <thead class="thead-strong">
                 <tr>
 
                     <th>회사</th>
@@ -23,26 +27,24 @@
                     <th>실시간정보</th>
                     <th>예측정보</th>
                 </tr>
-            </thead>
-            <tbody id="tbody">
-            {{#each stocks}}
-                <tr>
+                </thead>
+                <tbody id="tbody">
+                {{#each stocks}}
+                    <tr>
 
-                    <td>{{name}}</td>
-                    <td>{{presentPrice}}</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" onClick="location.href='stock?index={{code}}'">실시간 정보 보기</button>
-                    </td>
-                    <td> <button type="button" class="btn btn-primary">예측 정보 보기</button></td>
-                </tr>
-            {{/each}}
-            </tbody>
-        </table>
+                        <td>{{name}}</td>
+                        <td>{{presentPrice}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" onClick="location.href='stock?index={{code}}'">실시간 정보 보기</button>
+                        </td>
+                        <td> <button type="button" class="btn btn-primary">예측 정보 보기</button></td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div>
-        <h3>-Prediction Chart</h3>
-        <img src="https://t1.daumcdn.net/cfile/tistory/99E30A455D0F336B2F" alt="주가 예상 차트">
-    </div>
+
     <!-- Modal 영역 -->
     <div class="modal fade" id="savePostsModal" tabindex="-1" role="dialog" aria-labelledby="savePostsLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
