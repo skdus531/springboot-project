@@ -30,14 +30,12 @@ public class WebController {
     public String main(Model model) throws IOException {
         List<PostsMainResponseDto> list = postsService.findAllDesc();
 
-        int len = list.size();
-        for(int i = 0; i<len; i++){
+        for(int i = 0; i<list.size(); i++){
             Stocks stock = StockService.addStockData(list.get(i).getContent());
             list.get(i).setAuthor(Integer.toString(stock.getPresentPrice()));
         }
         model.addAttribute("posts",list);
-//        List<Stocks> stocksList = StockService.getStockData();
-//        model.addAttribute("stocks", stocksList);
+
         return "main";
     }
 
@@ -49,5 +47,12 @@ public class WebController {
 
         return "stock";
     }
+    @GetMapping("/guide")
+    public String guide(@RequestParam("index") String code, Model model) throws IOException {
 
+        List<Stocks> stocksList =StockService.getStockData(code);
+        model.addAttribute("stocks", stocksList);
+
+        return "guide";
+    }
 }

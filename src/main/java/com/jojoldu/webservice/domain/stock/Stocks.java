@@ -24,4 +24,10 @@ public class Stocks {
     private String imgURL;  // 차트
 
     private String code; // 회사 코드
+
+    private int eps;
+
+    private double per;
+
+    private int reasonable_price; //적정주가
 }

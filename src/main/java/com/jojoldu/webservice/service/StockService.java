@@ -17,13 +17,19 @@ public class StockService {
     public static Stocks addStockData(String code) throws IOException {
 
         String STOCK_DATA_URL = "https://finance.naver.com/item/sise.nhn?code="+code;
+        String GUIDE_DATA_URL = "https://finance.naver.com/item/main.nhn?code="+code;
         Document doc = Jsoup.connect(STOCK_DATA_URL).get();
-
+        Document guide = Jsoup.connect(GUIDE_DATA_URL).get();
         Elements contents = doc.select("table[class=type2 type_tax] tbody");
         Elements img = doc.select("div[class=chart] img");
         Elements company = doc.select("div[class=wrap_company] h2 a");
-        Stocks stocks;
+        Elements eps=guide.select("#content > div.section.cop_analysis > div.sub_section > table > tbody > tr:nth-child(10) > td.last.cell_strong");
+        Elements per=guide.select("#content > div.section.cop_analysis > div.sub_section > table > tbody > tr:nth-child(11) > td.last.cell_strong");
 
+        int eps_value=Integer.parseInt(eps.text().replaceAll("[^0-9]", ""));
+        double per_value=Double.parseDouble(per.text());
+        int reasonable_price_value=(int)(eps_value*per_value);
+        Stocks stocks;
         Elements tdContents = contents.select("td");
         Elements flag = contents.select("em");
         int sign = 1;
@@ -38,18 +44,12 @@ public class StockService {
                 .low(Integer.parseInt(tdContents.get(11).text().replaceAll("[^0-9]", "")))
                 .imgURL(img.attr("src"))
                 .code(code)
+                .eps(eps_value)
+                .per(per_value)
+                .reasonable_price(reasonable_price_value)
                 .build();
 
         return stocks;
-    }
-
-    public static List<Stocks> getStockData() throws IOException {
-        List<Stocks> stocksList = new ArrayList<>();
-        String companys[] = {"005930","035420","003550"};
-        for(int i = 0; i<companys.length; i++){
-            stocksList.add(addStockData(companys[i]));
-        }
-        return stocksList;
     }
 
     public static List<Stocks> getStockData(String code) throws IOException {
