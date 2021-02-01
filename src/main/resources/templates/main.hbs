@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>주가 예측 웹 서비스</title>
+    <title>주식 초보자를 위한 주식 가이드</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -12,8 +12,13 @@
 <body>
     <div class="container">
         <div class="jumbotron" style="margin: 20px">
-            <h1 class="display-4" style="font-weight: bold">주가 예측 웹 서비스</h1>
+            <h1 class="display-4" style="font-weight: bold">주식 초보자를 위한 주식 가이드</h1>
             <p class="lead" style="font-weight: bold">LG CNS 2그룹</p>
+            <hr class="my-4">
+            <p>
+                <span>더 많은 회사의 정보를 보고 싶다면 회사를 추가하세요! &nbsp; &nbsp;</span> 
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#savePostsModal">회사 추가</button>
+            </p>
         </div>
 
         <div class="col-md-12">
@@ -60,16 +65,12 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="title">제목</label>
-                            <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+                            <label for="title">회사 이름</label>
+                            <input type="text" class="form-control" id="title" placeholder="회사 이름을 입력하세요">
                         </div>
                         <div class="form-group">
-                            <label for="author"> 작성자 </label>
-                            <input type="text" class="form-control" id="author" placeholder="작성자를 입력하세요">
-                        </div>
-                        <div class="form-group">
-                            <label for="content"> 내용 </label>
-                            <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
+                            <label for="content"> 회사 코드 </label>
+                            <textarea class="form-control" id="content" placeholder="해당 회사의 네이버 금융 코드를 입력하세요"></textarea>
                         </div>
                     </form>
                 </div>

@@ -10,45 +10,50 @@
 
 <div class = "container">
 
-    <h1 class="display-4" style="font-weight: bold">Present Stock Price({{stocks.0.name}})</h1>
-    <p class="lead">시세 현황 테이블</p>
+    <h1 class="display-4" style="font-weight: bold">Proper Stock Price({{stocks.0.name}})</h1>
+    <p class="lead">적정 주가 테이블</p>
 
     <div class="jumbotron">
-        <h1 class="display-4" style="font-weight: bold">{{stocks.0.presentPrice}}</h1>
-        <p class="lead">{{stocks.0.name}}의 현재가</p>
+        <h1 class="display-4" style="font-weight: bold">{{stocks.0.reasonable_price}}</h1>
+        <p class="lead">{{stocks.0.name}}의 적정 주가</p>
         <hr class="my-4">
         <p>
-            <span>적정 가격 예측 값 &nbsp;&nbsp;</span>
-            <span id="diff" style="font-weight: bold; font-size: 2rem">{{stocks.0.reasonable_price}}</span>
+            <span>{{stocks.0.name}}의 현재가</span>
+            <span id="diff" style="font-weight: bold; font-size: 2rem">{{stocks.0.presentPrice}}</span>
+            <span id="guide" style="font-weight: bold; font-size: 2rem"></span>
         </p>
     </div>
-    <img src="{{stocks.0.imgURL}}" alt="chart" width="100%" style="margin:20px 0 20px 0">
-    <table class= "table" style="margin-bottom: 50px">
-        <tr>
-            <th>이름</th>
-            <th>전일 대비 증감량</th>
-            <th>시가</th>
-            <th>고가</th>
-            <th title = "인구 10만 명당">저가</th>
-        </tr>
-        {{#each stocks}}
-            <tr>
-                <td>{{name}} </td>
-                <td>{{diffFromPrevDay}}</td>
-                <td>{{marketPrice}}</td>
-                <td>{{high}}</td>
-                <td>{{low}}</td>
-            </tr>
-        {{/each}}
-    </table>
+    <!--    <img src="{{stocks.0.imgURL}}" alt="chart" width="100%" style="margin:20px 0 20px 0">-->
+    <!--    <table class= "table" style="margin-bottom: 50px">-->
+    <!--        <tr>-->
+    <!--            <th>이름</th>-->
+    <!--            <th>전일 대비 증감량</th>-->
+    <!--            <th>시가</th>-->
+    <!--            <th>고가</th>-->
+    <!--            <th title = "인구 10만 명당">저가</th>-->
+    <!--        </tr>-->
+        <!--        {{#each stocks}}-->
+    <!--            <tr>-->
+    <!--                <td>{{name}} </td>-->
+    <!--                <td>{{diffFromPrevDay}}</td>-->
+    <!--                <td>{{marketPrice}}</td>-->
+    <!--                <td>{{high}}</td>-->
+    <!--                <td>{{low}}</td>-->
+    <!--            </tr>-->
+        <!--        {{/each}}-->
+    <!--    </table>-->
 </div>
 <script>
     var span = document.getElementById("diff");
+    var span2 =document.getElementById("guide");
     let sign = span.innerHTML;
+    span2.style.color = "black"
     if (sign<{{stocks.0.presentPrice}}){
         span.style.color = "blue";
+        span2.innerHTML = '<br>' + "적정주가보다 낮으므로 매수를 추천드립니다." +  '<br/>'
     }else if(sign>0){
         span.style.color = "red";
+        span2.innerHTML = "<br>" + "적정주가보다 높으므로 매도를 추천드립니다." + "<br/>"
     }
 </script>
 </body>
