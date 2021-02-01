@@ -28,7 +28,7 @@ public class StockService {
 
         int eps_value=Integer.parseInt(eps.text().replaceAll("[^0-9]", ""));
         double per_value=Double.parseDouble(per.text());
-        int reasonable_price_value=(int)(eps_value*per_value);
+        int reasonable_price_value= Math.abs((int)(eps_value*per_value));
         Stocks stocks;
         Elements tdContents = contents.select("td");
         Elements flag = contents.select("em");

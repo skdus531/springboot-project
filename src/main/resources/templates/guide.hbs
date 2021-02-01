@@ -48,12 +48,22 @@
     var span2 =document.getElementById("guide");
     let sign = span.innerHTML;
     span2.style.color = "black"
-    if (sign<{{stocks.0.presentPrice}}){
+    if (sign<0){
         span.style.color = "blue";
-        span2.innerHTML = '<br>' + "적정주가보다 낮으므로 매수를 추천드립니다." +  '<br/>'
-    }else if(sign>0){
+    }
+    else if (sign>0){
         span.style.color = "red";
+    }
+    var reason = {{stocks.0.reasonable_price}};
+    var present = {{stocks.0.presentPrice}};
+    if (reason > present){
+        span2.innerHTML = '<br>' + "적정주가보다 낮으므로 매수를 추천드립니다." +  '<br/>'
+    }
+    else if (reason < present){
         span2.innerHTML = "<br>" + "적정주가보다 높으므로 매도를 추천드립니다." + "<br/>"
+    }
+    else{
+        span2.innerHTML = "<br>" + "적정주가와 같으므로 좀 더 지켜보시는 것을 추천드립니다." + "<br/>"
     }
 </script>
 </body>
