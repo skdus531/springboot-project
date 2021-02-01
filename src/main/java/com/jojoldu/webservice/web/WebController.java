@@ -26,7 +26,7 @@ public class WebController {
 
     @GetMapping("/")
     public String main(Model model) throws IOException {
-
+        model.addAttribute("posts",postsService.findAllDesc());
         List<Stocks> stocksList = StockService.getStockData();
         model.addAttribute("stocks", stocksList);
         return "main";
