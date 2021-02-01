@@ -29,11 +29,11 @@
                 </tr>
                 </thead>
                 <tbody id="tbody">
-                {{#each posts}}
+                {{#each stocks}}
                     <tr>
 
-                        <td>{{title}}</td>
-                        <td>{{author}}</td>
+                        <td>{{name}}</td>
+                        <td>{{presentPrice}}</td>
                         <td>
                             <button type="button" class="btn btn-primary" onClick="location.href='stock?index={{code}}'">실시간 정보 보기</button>
                         </td>

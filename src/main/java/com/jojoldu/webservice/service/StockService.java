@@ -1,16 +1,19 @@
 package com.jojoldu.webservice.service;
+import com.jojoldu.webservice.domain.posts.PostsRepository;
 
 import com.jojoldu.webservice.domain.stock.Stocks;
+import com.jojoldu.webservice.dto.posts.PostsMainResponseDto;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StockService {
@@ -29,8 +32,11 @@ public class StockService {
         int sign = 1;
         if (flag.attr("class").contains("dn")) sign = -1;
 
+        List<PostsMainResponseDto> list = postsRepository.findAllDesc().map(PostsMainResponseDto::new).collect(Collectors.toList());
+//        System.out.println(list.get(3).toString());
+
         stocks = Stocks.builder()
-                .name(company.text())
+                .name(list.get(3).toString())
                 .presentPrice(Integer.parseInt(tdContents.get(0).text().replaceAll("[^0-9]", "")))
                 .diffFromPrevDay(sign * Integer.parseInt(tdContents.get(2).text().replaceAll("[^0-9]", "")))
                 .marketPrice(Integer.parseInt(tdContents.get(7).text().replaceAll("[^0-9]", "")))
@@ -43,12 +49,16 @@ public class StockService {
         return stocks;
     }
 
+    private static PostsRepository postsRepository;
+
     public static List<Stocks> getStockData() throws IOException {
         List<Stocks> stocksList = new ArrayList<>();
+
         String companys[] = {"005930","035420","003550"};
         for(int i = 0; i<companys.length; i++){
             stocksList.add(addStockData(companys[i]));
         }
+
         return stocksList;
     }
 
