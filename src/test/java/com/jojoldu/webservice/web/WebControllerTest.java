@@ -29,6 +29,6 @@ public class WebControllerTest {
         String body = this.restTemplate.getForObject("/", String.class);
 
         //then
-        assertThat(body).contains("주가 예측 웹 서비스");
+        assertThat(body).contains("주식 초보자를 위한 주식 가이드");
     }
 }
