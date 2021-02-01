@@ -1,6 +1,8 @@
 package com.jojoldu.webservice.web;
 
+import com.jojoldu.webservice.domain.posts.Posts;
 import com.jojoldu.webservice.domain.stock.Stocks;
+import com.jojoldu.webservice.dto.posts.PostsMainResponseDto;
 import com.jojoldu.webservice.service.PostsService;
 import com.jojoldu.webservice.service.StockService;
 import lombok.AllArgsConstructor;
@@ -26,9 +28,16 @@ public class WebController {
 
     @GetMapping("/")
     public String main(Model model) throws IOException {
-        model.addAttribute("posts",postsService.findAllDesc());
-        List<Stocks> stocksList = StockService.getStockData();
-        model.addAttribute("stocks", stocksList);
+        List<PostsMainResponseDto> list = postsService.findAllDesc();
+
+        int len = list.size();
+        for(int i = 0; i<len; i++){
+            Stocks stock = StockService.addStockData(list.get(i).getContent());
+            list.get(i).setAuthor(Integer.toString(stock.getPresentPrice()));
+        }
+        model.addAttribute("posts",list);
+//        List<Stocks> stocksList = StockService.getStockData();
+//        model.addAttribute("stocks", stocksList);
         return "main";
     }
 

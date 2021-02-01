@@ -29,6 +29,10 @@ public class PostsMainResponseDto {
         modifiedDate = toStringDateTime(entity.getModifiedDate());
     }
 
+    public void setAuthor(String author){
+        this.author = author;
+    }
+
     /**
      * Java 8 버전
      */
